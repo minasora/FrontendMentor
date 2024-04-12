@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Social links profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    :root {
+    /* Primary Colors */
+    --primary-green: hsl(75, 94%, 57%);
+
+    /* Neutral Colors */
+    --neutral-white: hsl(0, 0%, 100%);
+    --neutral-grey: hsl(0, 0%, 20%);
+    --dark-grey: hsl(0, 0%, 12%);
+    --off-black: hsl(0, 0%, 8%);
+}
+
+
+  .inter-normal {
+    font-family: "Inter", sans-serif;
+    font-size:  14px;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
+  }
+
+
+
+    .main {
+      background-color: var(--off-black);
+    }
+    .card {
+      background-color: var(--dark-grey);
+      color: var(--neutral-white);
+    }
+    .address {
+      color: var(--primary-green);
+    }
+    .website {
+      background-color: var(--neutral-grey)
+    }
+  </style>
+</head>
+<body class="main inter-normal">
+  <div class = "card  mt-40 mx-80 my-20 p-10 rounded-lg flex flex-col text-center">  
+  <img src="./assets/images/avatar-jessica.jpeg" alt="Jessica Randall" class="rounded-full w-24 h-24 mx-auto" />
+  <p class = "mt-6 text-3xl font-semibold">  Jessica Randall </p> 
+ 
+  <p class = "address mt-3 mb-5 font-bold ">London, United Kingdom</p>
+  
+  <p class="mx-5 mb-3 font-light">"Front-end developer and avid reader." </p>
+
+  <div class="mx-3 my-2 bg-[#333333]  hover:bg-[#c5f82a]  hover:text-black rounded-lg  font-bold ">
+    <button alt="github.com" class="mx-3 my-3" >   GitHub  </button>
+  </div>
+    
+  <div class="mx-3 my-2 bg-[#333333]  hover:bg-[#c5f82a]  hover:text-black rounded-lg  font-bold ">
+    <button alt="github.com" class="mx-2 my-3 mx-auto">   Frontend Mentor   </button>
+  </div>
+  <div class="mx-3 my-2 bg-[#333333]  hover:bg-[#c5f82a]  hover:text-black rounded-lg  font-bold ">
+    <button alt="github.com" class="mx-2 my-3"> LinkedIn  </button>
+  </div>
+  <div class="mx-3 my-2 bg-[#333333]  hover:bg-[#c5f82a]  hover:text-black rounded-lg  font-bold ">
+    <button alt="github.com" class="mx-2 my-3">   Twitter  </button>
+  </div>
+  <div class="mx-3 my-2 bg-[#333333]  hover:bg-[#c5f82a]  hover:text-black rounded-lg  font-bold ">
+    <button alt="github.com" class="mx-2 my-3">   Instagram  </button>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+</body>
+<footer class="mx-auto text-center text-gray-50">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Minasora</a>.
+</footer>
+</html>
