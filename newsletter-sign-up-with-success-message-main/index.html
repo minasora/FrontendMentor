@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  .roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: black
+  }
+
+  .roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .custom-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .custom-list li::before {
+    content: '';
+    background-image: url('./assets/images/icon-list.svg');
+    background-size: cover;
+    /* 覆盖整个内容区域，保持图标不失真 */
+    display: block;
+    width: 20px;
+    /* 控制图标的宽度 */
+    height: 20px;
+    /* 控制图标的高度，确保与行高一致 */
+    flex-shrink: 0;
+    /* 防止图标在 flex 布局中缩小 */
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+</head>
+
+<body class="bg-[#242741] roboto-regular">
+
+
+
+
+
+  <div class="grid md:grid-cols-2 m-20 bg-white rounded-lg  ">
+
+
+    <!-- Sign-up form start -->
+    <div class="p-10 mx-10 mt-10 order-2 md:order-none">
+      <h1 class="text-5xl font-bold ">Stay updated!</h1>
+
+      <p class=" mt-5">Join 60,000+ product managers receiving monthly updates on:</p>
+
+      <ul class=" custom-list list-none pl-0 flex flex-col gap-2 text-base mt-5 ">
+        <li class="flex items-center">Product discovery and building what matters</li>
+        <li class="flex items-center">Measuring to ensure updates are a success</li>
+        <li class="flex items-center">And much more!</li>
+      </ul>
+      <p class="text-sm font-bold mt-10 mb-2"> Email address</p>
+      <div class="relative">
+        <div class="relative w-full">
+          <input id="emailInput" type="email" required
+            class="border-2 rounded-lg p-2 w-full h-12 invalid:border-red-500" placeholder="email@company.com">
+          <div id="errorMsg" class="absolute right-0 top-0 transform translate-y-[-100%] text-xs text-red-500 hidden">
+            Valid email required</div>
+        </div>
+        <div class="flex flex-col items-start  mt-5">
+          <button type="button" onclick="redirectToSecondPage()"
+            class="bg-gradient-to-r bg-[#242741] w-full h-12 rounded-lg  font-bold text-white hover:from-pink-500 hover:to-yellow-500 shadow-orange-400">
+            Subscribe to monthly newsletter
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+      <div class="p-4 order-1 md:order-none  md:col-start-2">
+        <img class=" m-auto" src="./assets/images/illustration-sign-up-desktop.svg">
+      </div>
+
+
+</body>
+<div>
+
+
+  <!-- Sign-up form end -->
+
+  <!-- Success message start -->
+
+
+
+  <!-- Success message end -->
+
+</div>
+
+<!-- Thanks for subscribing!
+
+A confirmation email has been sent to ash@loremcompany.com.
+Please open it and click the button inside to confirm your subscription.
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+  Coded by <a href="#">Your Name Here</a>.
+Dismiss message -->
+
+
+<script>
+  const emailInput = document.getElementById('emailInput');
+  const errorMsg = document.getElementById('errorMsg');
+
+  emailInput.addEventListener('input', function () {
+
+    if (!this.validity.valid) {
+      errorMsg.classList.remove('hidden');
+    } else {
+      errorMsg.classList.add('hidden');
+    }
+  });
+
+  function redirectToSecondPage() {
+    if (emailInput.validity.valid) {
+      const email = emailInput.value;
+      window.location.href = "./success.html?message=" + encodeURIComponent(email);
+
+    }
+  }
+</script>
+
+</html>
