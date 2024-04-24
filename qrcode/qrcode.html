@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="./output.css" rel="stylesheet">
+<body class="bg-qr_black bg-qr bg-no-repeat bg-top-20-right-10 flex items-center">
+
+    <img class="absolute top-6 left-6 w-12" src="logo-qr-generator.svg" alt="logo">
+    <div class=" flex-col flex  items-center justify-center w-screen h-screen">
+        <div  class=" w-36 h-36 bg-qr_white relative rounded-xl ">
+            <div class="w-full h-full bg-qr_white p-4 rounded-xl">
+                <div id="qrcode" class="rounded-xl"> </div>
+            </div>
+        </div>
+
+
+
+        <div class=" flex flex-row justify-between   mt-10 items-center bg-qr_black rounded-xl  w-1/4">
+            <button id="download" class="ml-4 px-2 py-2 min-w-1/4 rounded-md ml-2 text-xs text-qr_white bg-qr_blue rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Download
+                <i class="fa fa-download" aria-hidden="true"></i>
+            </button>
+            <button id="share" class="mr-4 px-2 py-2 min-w-1/4 rounded-md ml-2 text-xs text-qr_white bg-qr_blue rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                 Share
+                <i class="fa fa-share" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const sessionToken = params.get('sessionToken');
+           setQRCode(sessionToken);
+    });
+
+    const setQRCode = (text) => {
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: text,
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+    }
+    const setDownloadlink = (url) => {
+        const button = document.getElementById('download');
+        button.addEventListener('click', function() {
+            // 提供您的下载URL
+            const downloadUrl = url;
+            const downloadLink = document.createElement('a');
+            downloadLink.href = downloadUrl;
+            downloadLink.download = 'qrcode.png';
+            downloadLink.click();
+        });
+    }
+    const setSharelink = (url) => {
+        const button = document.getElementById('share');
+        button.addEventListener('click', function() {
+            // 提供您的分享URL
+            navigator.clipboard.writeText(url)
+                .then(() => alert('Copied!'))
+                .catch((error) => console.log('Error sharing', error));
+        });
+    }
+    const imgElement = document.querySelector('#qrcode img');
+    if (imgElement) {
+        imgElement.onload = function() {
+            var imgSrc = imgElement.src;
+            console.log(imgSrc);
+            setDownloadlink(imgSrc)
+            setSharelink(imgSrc)
+        };
+    }
+</script>
+</html>
