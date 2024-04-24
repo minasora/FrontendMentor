@@ -40,9 +40,22 @@
     document.addEventListener('DOMContentLoaded', function() {
         const params = new URLSearchParams(window.location.search);
         const sessionToken = params.get('sessionToken');
-           setQRCode(sessionToken);
-    });
+        console.log(sessionToken);
+        executeFunctionsInOrder(sessionToken);
 
+    });
+    async function executeFunctionsInOrder(sessionToken) {
+        try {
+            const url = await setQRCode(sessionToken); // 等待设置QRCode完成
+
+
+            await setDownloadlink(url); // 等待设置Download Link完成
+            await setSharelink(url); // 等待设置Share Link完成
+            console.log("All functions executed successfully."); // 所有函数执行完毕后输出成功消息
+        } catch (error) {
+            console.error(error); // 捕获并输出错误消息
+        }
+    }
     const setQRCode = (text) => {
         const qrcode = new QRCode(document.getElementById("qrcode"), {
             text: text,
@@ -52,13 +65,15 @@
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H
         });
-
+        return document.getElementById("qrcode").children[0].toDataURL("image/png");
     }
+
     const setDownloadlink = (url) => {
         const button = document.getElementById('download');
         button.addEventListener('click', function() {
             // 提供您的下载URL
             const downloadUrl = url;
+            console.log(downloadUrl);
             const downloadLink = document.createElement('a');
             downloadLink.href = downloadUrl;
             downloadLink.download = 'qrcode.png';
@@ -68,20 +83,12 @@
     const setSharelink = (url) => {
         const button = document.getElementById('share');
         button.addEventListener('click', function() {
-            // 提供您的分享URL
+            console.log(url);
             navigator.clipboard.writeText(url)
                 .then(() => alert('Copied!'))
                 .catch((error) => console.log('Error sharing', error));
         });
     }
-    const imgElement = document.querySelector('#qrcode img');
-    if (imgElement) {
-        imgElement.onload = function() {
-            var imgSrc = imgElement.src;
-            console.log(imgSrc);
-            setDownloadlink(imgSrc)
-            setSharelink(imgSrc)
-        };
-    }
+
 </script>
 </html>
